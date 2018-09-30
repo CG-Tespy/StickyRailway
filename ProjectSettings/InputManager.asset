@@ -265,8 +265,8 @@ InputManager:
     m_Name: SteerFB
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: w
-    positiveButton: s
+    negativeButton: s
+    positiveButton: w
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -297,8 +297,8 @@ InputManager:
     m_Name: Accelerate
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: s
-    positiveButton: w
+    negativeButton: e
+    positiveButton: q
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
