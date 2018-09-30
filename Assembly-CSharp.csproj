@@ -53,21 +53,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Materials\Scripts\ContactEvents3D.cs" />
-     <Compile Include="Assets\Materials\Scripts\MonoBehaviour3D.cs" />
-     <Compile Include="Assets\Materials\Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\Materials\Scripts\Powerups\PowerupController.cs" />
-     <Compile Include="Assets\Materials\Scripts\Powerups\TrainPowerup.cs" />
-     <Compile Include="Assets\Materials\Scripts\Powerups\TrainPowerupEffect.cs" />
-     <Compile Include="Assets\Materials\Scripts\Powerups\TrainStatChange.cs" />
-     <Compile Include="Assets\Materials\Scripts\RotationalWaypoint.cs" />
-     <Compile Include="Assets\Materials\Scripts\TrainBox.cs" />
-     <Compile Include="Assets\Materials\Scripts\TrainController.cs" />
+     <Compile Include="Assets\Scripts\AudioFader.cs" />
+     <Compile Include="Assets\Scripts\ContactEvents3D.cs" />
+     <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\MonoBehaviour3D.cs" />
+     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\PlayerTrain.cs" />
+     <Compile Include="Assets\Scripts\Powerups\PowerupController.cs" />
+     <Compile Include="Assets\Scripts\Powerups\TrainPowerup.cs" />
+     <Compile Include="Assets\Scripts\Powerups\TrainPowerupEffect.cs" />
+     <Compile Include="Assets\Scripts\Powerups\TrainStatChange.cs" />
+     <Compile Include="Assets\Scripts\RotationalWaypoint.cs" />
+     <Compile Include="Assets\Scripts\ScreenFader.cs" />
+     <Compile Include="Assets\Scripts\TrainBox.cs" />
+     <Compile Include="Assets\Scripts\TrainController.cs" />
+     <Compile Include="Assets\Sensor.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>D:/Documents/Unity Projects/StickyRailway/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/Alienware/Documents/GitHub/StickyRailway/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>D:/Documents/Unity Projects/StickyRailway/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/Alienware/Documents/GitHub/StickyRailway/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/Program Files/Unity2018.1.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
