@@ -36,7 +36,7 @@ public class PlayerTrain : TrainController
     void HandleSteering()
     {
         // Choose what waypoint to go to next after reaching the target, all based on use input.
-
+        
         float steerFB =                     Input.GetAxis("SteerFB");
         float steerLR =                     Input.GetAxis("SteerLR");
 
@@ -45,18 +45,22 @@ public class PlayerTrain : TrainController
         bool goLeft =                       steerLR < 0;
         bool goRight =                      steerLR > 0;
 
-        if (goForward)
-            nextTarget = waypointTarget.forwardPoint;
+        if (goForward && waypointTarget.forwardPoint != null)
+            nextTarget =                    waypointTarget.forwardPoint;
         
-        if (goBackward)
-            nextTarget = waypointTarget.backPoint;
+        if (goBackward && waypointTarget.backPoint != null)
+            nextTarget =                    waypointTarget.backPoint;
 
-        else if (goLeft)
-            nextTarget = waypointTarget.leftPoint;
+        if (goLeft && waypointTarget.leftPoint != null)
+            nextTarget =                    waypointTarget.leftPoint;
         
-        if (goRight)
-            nextTarget = waypointTarget.rightPoint;
+        if (goRight && waypointTarget.rightPoint != null)
+            nextTarget =                    waypointTarget.rightPoint;
+        
+        if (nextTarget != null)
+            waypointTarget =                    nextTarget;
 
-        
+        if (nextTarget != null)
+            Debug.Log("Next target: " + nextTarget.name);
     }
 }

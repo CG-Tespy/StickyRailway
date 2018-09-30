@@ -63,7 +63,7 @@ public abstract class TrainController : MonoBehaviour3D
 		navMeshAgent = 					GetComponent<NavMeshAgent>();
 		navMeshAgent.speed = 			currentSpeed;
 		baseWaypoint  = 				firstWaypoint;
-		waypointTarget = baseWaypoint;
+		waypointTarget = 				baseWaypoint;
 	}
 	
 	protected virtual void Start()
@@ -94,7 +94,7 @@ public abstract class TrainController : MonoBehaviour3D
 
 	public void HandleAutomaticMovement()
 	{
-        waypointTarget = baseWaypoint;
+        
 		// The train just keeps moving forward all on its own.
 		if (navMeshAgent.destination != waypointTarget.transform.position)
 			navMeshAgent.SetDestination(waypointTarget.transform.position);
