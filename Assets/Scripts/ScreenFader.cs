@@ -90,7 +90,7 @@ public class ScreenFader : MonoBehaviour
 		{
 			timer += 		Time.deltaTime;
 			opacity = 		Mathf.Lerp(baseOpacity, targetOpacity, timer / duration);
-			Debug.Log("Current opacity: " + opacity);
+			//Debug.Log("Current opacity: " + opacity);
 			yield return null;
 		}
 

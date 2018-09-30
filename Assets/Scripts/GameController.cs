@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
+		GetSceneComponents();
 		bool titleScreen = 			scene.name == "TitleScreen";
 
 		if (titleScreen)
@@ -44,14 +45,14 @@ public class GameController : MonoBehaviour
 		}
 
 		// Basically reset the game when loading into the game scene
-		bool gameScene = 			scene.name == "game";
+		bool gameScene = 			scene.name == gameSceneName;
 
 		if (gameScene)
 		{
 			screenFader.FadeBegin.RemoveAllListeners();
 			screenFader.FadeEnd.RemoveAllListeners();
 
-			if (screenFader.opacity > 0)
+			if (screenFader.opacity > 0 && !screenFader.isFading)
 				screenFader.Fade(0, 1);
 
 			musicPlayer.Stop();
@@ -72,11 +73,8 @@ public class GameController : MonoBehaviour
 
 		GameStart = 							new UnityEvent();
 		GameOver = 								new UnityEvent();
-
-		screenFader = 							GameObject.FindObjectOfType<ScreenFader>();
-		musicPlayer = 							GameObject.Find("MusicPlayer").GetComponent<AudioSource>();
-		musicFader = 							musicPlayer.GetComponent<AudioFader>();
-
+		GetSceneComponents();
+		
 		fadeIntoGameScene = 					new UnityAction(FadeIntoGameScene);
 		fadeIntoTitleScreen = 					new UnityAction(FadeIntoTitleScreen);
 
@@ -86,13 +84,8 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
-		screenFader.Fade(0, 0);
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		
+		if (!screenFader.isFading)
+			screenFader.Fade(0, 0);
 	}
 
 	void FadeIntoTitleScreen()
@@ -109,9 +102,18 @@ public class GameController : MonoBehaviour
 	{
 		if (!screenFader.isFading)
 		{
+			Debug.Log("Fading into game scene!");
 			musicFader.FadeIntoClip(stageMusic, 1f, 1f, 1f);
 			screenFader.Fade(1, 1);
 			screenFader.FadeEnd.AddListener(() => SceneManager.LoadScene(gameSceneName));
+			//screenFader.FadeEnd.AddListener(() => screenFader.Fade(0, fadeOutDuration));
 		}
+	}
+
+	void GetSceneComponents()
+	{
+		screenFader = 							GameObject.FindObjectOfType<ScreenFader>();
+		musicPlayer = 							GameObject.Find("MusicPlayer").GetComponent<AudioSource>();
+		musicFader = 							musicPlayer.GetComponent<AudioFader>();
 	}
 }
