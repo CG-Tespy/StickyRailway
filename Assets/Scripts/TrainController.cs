@@ -75,6 +75,7 @@ public abstract class TrainController : MonoBehaviour3D
 	protected virtual void Update () 
 	{
 		HandleAutomaticMovement();
+		//UpdateTrainBoxSizes();
 	}
 
 	void OnHitboxCollision(Collider other)
@@ -117,6 +118,32 @@ public abstract class TrainController : MonoBehaviour3D
 	public virtual void GoToNextTarget()
 	{
 		waypointTarget = 		nextTarget;
+	}
+
+	void UpdateTrainBoxSizes()
+	{
+		// Hitbox...
+		Vector3 hitBoxScale = 					Vector3.one;
+
+		float boostModifier = 					0.05f;
+		float totalPowerBoost = 				(offense - 1) * boostModifier;
+
+		Vector3 hitBoxBoost = 					Vector3.one * totalPowerBoost;
+
+		hitBoxScale += 							hitBoxBoost;
+		hitBox.transform.localScale = 			hitBoxScale;
+
+		// And Hurtbox.
+		Vector3 hurtBoxScale = 					Vector3.one;
+
+		float shrinkModifier = 					0.05f;
+		float totalShrinkage = 					(defense - 1) * shrinkModifier;
+
+		Vector3 hurtBoxBoost = 					Vector3.one * totalShrinkage;
+
+		hurtBoxScale += 						hurtBoxBoost;
+		hurtBox.transform.localScale = 			hurtBoxScale;
+		
 	}
 
 }
