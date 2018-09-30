@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.AI;
 
 public abstract class TrainController : MonoBehaviour3D 
 {
@@ -12,9 +13,18 @@ public abstract class TrainController : MonoBehaviour3D
 	[SerializeField] float _defense = 			1f;
 	[SerializeField] TrainBox _hurtBox;
 	[SerializeField] TrainBox _hitbox;
+	[SerializeField] RotationalWaypoint firstWaypoint;
+
+	RotationalWaypoint lastWaypointReached;
+	[SerializeField] RotationalWaypoint _waypointTarget;
+	public RotationalWaypoint waypointTarget
+	{
+		get { return _waypointTarget; }
+		set { _waypointTarget = value; }
+	}
 
 	// Properties
-	public float currentSpeed
+	public virtual float currentSpeed
 	{
 		get 							{ return _currentSpeed; }
 		set 							{ _currentSpeed = Mathf.Clamp(value, 0, _maxSpeed); }
@@ -31,21 +41,35 @@ public abstract class TrainController : MonoBehaviour3D
 		get 							{ return _defense; }
 		set 							{ _defense = value; }
 	}
+	public float accelRate
+	{
+		get 							{ return _accelRate; }
+		set 							{ _accelRate = value; }
+	}
+
 	public TrainBox hurtBox 			{ get { return _hurtBox; } }
 	public TrainBox hitBox 				{ get { return _hitbox; } }
 
 	bool dying;
+	protected NavMeshAgent navMeshAgent;
+
+	protected override void Awake()
+	{
+		base.Awake();
+		navMeshAgent = 					GetComponent<NavMeshAgent>();
+		navMeshAgent.speed = 			currentSpeed;
+		waypointTarget = 				firstWaypoint;
+	}
 	
-	void Start()
+	protected virtual void Start()
 	{
 		SetupCallbacks();
 	}
 
 	// Update is called once per frame
-	void Update () 
+	protected virtual void Update () 
 	{
 		HandleAutomaticMovement();
-		//HandleAcceleration();
 	}
 
 	void OnHitboxCollision(Collider other)
@@ -66,16 +90,11 @@ public abstract class TrainController : MonoBehaviour3D
 	public void HandleAutomaticMovement()
 	{
 		// The train just keeps moving forward all on its own.
-		rigidbody.velocity = 						transform.forward * currentSpeed;
+		if (navMeshAgent.destination != waypointTarget.transform.position)
+			navMeshAgent.SetDestination(waypointTarget.transform.position);
 	}
 
-	void HandleAcceleration()
-	{
-		// Let the player accelerate or decelerate the train
-		float steerAxis = 							Input.GetAxis("Steer");
-
-		currentSpeed += 							steerAxis * _accelRate * Time.deltaTime;
-	}
+	
 
 	public void Die()
 	{
