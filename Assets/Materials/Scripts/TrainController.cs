@@ -45,41 +45,42 @@ public abstract class TrainController : MonoBehaviour3D
 	void Update () 
 	{
 		HandleAutomaticMovement();
-		HandleAcceleration();
+		//HandleAcceleration();
 	}
 
 	void OnHitboxCollision(Collider other)
 	{
-		TrainBox otherBox = other.GetComponent<TrainBox>();
+		TrainBox otherBox = 						other.GetComponent<TrainBox>();
 
 		if (otherBox != null)
 		{
-			TrainController otherTrain = 	otherBox.parentTrain;
+			TrainController otherTrain = 			otherBox.parentTrain;
 
-			bool killOtherTrain = 			otherBox.type == TrainBox.Type.hurt;
+			bool killOtherTrain = 					otherBox.type == TrainBox.Type.hurt;
 
 			if (killOtherTrain)
 				otherTrain.Die();
 		}
 	}
 
-	void HandleAutomaticMovement()
+	public void HandleAutomaticMovement()
 	{
-		rigidbody.velocity = 				transform.forward * currentSpeed;
+		// The train just keeps moving forward all on its own.
+		rigidbody.velocity = 						transform.forward * currentSpeed;
 	}
 
 	void HandleAcceleration()
 	{
 		// Let the player accelerate or decelerate the train
-		float steerAxis = 					Input.GetAxis("Steer");
+		float steerAxis = 							Input.GetAxis("Steer");
 
-		currentSpeed += 					steerAxis * Time.deltaTime;
+		currentSpeed += 							steerAxis * _accelRate * Time.deltaTime;
 	}
 
 	public void Die()
 	{
-		hurtBox.collider.enabled =		 	false;
-		hitBox.collider.enabled = 			false;
+		hurtBox.collider.enabled =		 			false;
+		hitBox.collider.enabled = 					false;
 		Destroy(this.gameObject);
 	}
 
