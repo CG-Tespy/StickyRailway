@@ -6,6 +6,10 @@ using UnityEngine.Events;
 public class RotationalWaypoint : MonoBehaviour 
 {
 
+    public RotationalWaypoint nextPoint, leftPoint, rightPoint;
+    public GameObject midPoint;
+
+
 	// Use this for initialization
 	void Awake () 
 	{
@@ -22,7 +26,7 @@ public class RotationalWaypoint : MonoBehaviour
 	{
 		Transform otherTrans = 			other.transform;
 
-		Vector3 rotToApply = 			transform.rotation.eulerAngles;
+		Vector3 rotToApply = transform.rotation.eulerAngles;
 		rotToApply.y -= 				90;
 
 		otherTrans.rotation = 			Quaternion.Euler(rotToApply);

@@ -5,81 +5,46 @@ using UnityEngine.Events;
 
 public abstract class TrainController : MonoBehaviour3D 
 {
-	[SerializeField] float _currentSpeed = 					0;
-	[SerializeField] float _maxSpeed = 						5f;
-	[SerializeField] float _accelRate = 					3f;
-	[SerializeField] float _offense = 						1f;
-	[SerializeField] float _defense = 						1f;
-	[SerializeField] Collider _hurtBoxCollider;
-	[SerializeField] Collider _hitboxCollider;
-	TrainBox hurtBox, hitbox;
+	[SerializeField] float currentSpeed = 	0;
+	[SerializeField] float maxSpeed = 		5f;
+	[SerializeField] float accelRate = 		3f;
+	[SerializeField] float offense = 		1f;
+	[SerializeField] float defense = 		1f;
+	[SerializeField] Collider _hurtBox;
+	[SerializeField] Collider _hitbox;
 
 	// Properties
-	public Collider hurtBoxCollider 						{ get { return _hurtBoxCollider; } }
-	public Collider hitBoxCollider 							{ get { return _hitboxCollider; } }
-	public float currentSpeed 
-	{ 
-		get { return _currentSpeed; }
-		set { _currentSpeed = value; }
-	}
+	public Collider hurtBox { get { return _hurtBox; } }
+	public Collider hitBox { get { return _hitbox; } }
 
-	public float offense 
-	{
-		get { return _offense; }
-		set { _offense = value; }
-	}
-
-	public float defense 
-	{
-		get { return _defense; }
-		set { _defense = value; }
-	}
+	new public Rigidbody rigidbody;
 	bool dying;
 
 	// Use this for initialization
-	protected override void Awake()
+	protected virtual void Awake () 
 	{
-		base.Awake();
-		SetupBoxes();
+		rigidbody = 						GetComponent<Rigidbody>();
+	}
+	
+	// Update is called once per frame
+	void Update () 
+	{
+		
 	}
 
-	void Start()
+	protected virtual void OnTriggerEnter(Collider other)
 	{
-		SetupCallbacks();
+		// When the hurtbox gets hit by a hitbox, the one with the hurtbox dies. The one dying 
+		// has its colliders disabled.
+
+		TrainController otherTrain = 			other.GetComponent<TrainController>();
+		if (otherTrain != null)
+			HandleTrainCollision(otherTrain, other);
 	}
 
-	protected virtual void OnHitboxCollision(Collider other)
+	protected virtual void HandleTrainCollision(TrainController otherTrain, Collider collidedWith)
 	{
-		TrainBox otherBox = 					other.GetComponent<TrainBox>();
-
-		if (otherBox != null)
-		{
-			bool killOtherTrain = 				otherBox.type == TrainBox.Type.hurt;
-
-			if (killOtherTrain)
-			{
-				TrainController otherTrain = 	otherBox.parentTrain;
-				otherTrain.Die();
-			}
-		}
-	}
-
-	public virtual void Die()
-	{
-		hitBoxCollider.enabled = 			false;
-		hurtBoxCollider.enabled = 			false;
-	}
-
-	// Helpers
-	void SetupBoxes()
-	{
-		hurtBox = 							hurtBoxCollider.GetComponent<TrainBox>();
-		hitbox = 							hitBoxCollider.GetComponent<TrainBox>();
-	}
-
-	void SetupCallbacks()
-	{
-		hitbox.contactEvents.TriggerEnter.AddListener(OnHitboxCollision);
+		
 	}
 
 }
