@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 815209a3eac4e544288c91de527ff38f, type: 3}
-  m_Name: PowerBoost
+  m_Name: OffenseBoost
   m_EditorClassIdentifier: 
   _offenseChange: 2
   _defenseChange: 0

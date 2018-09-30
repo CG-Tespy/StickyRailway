@@ -5,46 +5,87 @@ using UnityEngine.Events;
 
 public abstract class TrainController : MonoBehaviour3D 
 {
-	[SerializeField] float currentSpeed = 	0;
-	[SerializeField] float maxSpeed = 		5f;
-	[SerializeField] float accelRate = 		3f;
-	[SerializeField] float offense = 		1f;
-	[SerializeField] float defense = 		1f;
-	[SerializeField] Collider _hurtBox;
-	[SerializeField] Collider _hitbox;
+	[SerializeField] float _currentSpeed = 		1;
+	[SerializeField] float _maxSpeed = 			5f;
+	[SerializeField] float _accelRate = 		3f;
+	[SerializeField] float _offense = 			1f;
+	[SerializeField] float _defense = 			1f;
+	[SerializeField] TrainBox _hurtBox;
+	[SerializeField] TrainBox _hitbox;
 
 	// Properties
-	public Collider hurtBox { get { return _hurtBox; } }
-	public Collider hitBox { get { return _hitbox; } }
-
-	new public Rigidbody rigidbody;
-	bool dying;
-
-	// Use this for initialization
-	protected virtual void Awake () 
+	public float currentSpeed
 	{
-		rigidbody = 						GetComponent<Rigidbody>();
+		get 							{ return _currentSpeed; }
+		set 							{ _currentSpeed = Mathf.Clamp(value, 0, _maxSpeed); }
 	}
+
+	public float offense
+	{
+		get 							{ return _offense; }
+		set 							{ _offense = value;}
+	}
+
+	public float defense 
+	{
+		get 							{ return _defense; }
+		set 							{ _defense = value; }
+	}
+	public TrainBox hurtBox 			{ get { return _hurtBox; } }
+	public TrainBox hitBox 				{ get { return _hitbox; } }
+
+	bool dying;
 	
+	void Start()
+	{
+		SetupCallbacks();
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		HandleAutomaticMovement();
+		HandleAcceleration();
 	}
 
-	protected virtual void OnTriggerEnter(Collider other)
+	void OnHitboxCollision(Collider other)
 	{
-		// When the hurtbox gets hit by a hitbox, the one with the hurtbox dies. The one dying 
-		// has its colliders disabled.
+		TrainBox otherBox = other.GetComponent<TrainBox>();
 
-		TrainController otherTrain = 			other.GetComponent<TrainController>();
-		if (otherTrain != null)
-			HandleTrainCollision(otherTrain, other);
+		if (otherBox != null)
+		{
+			TrainController otherTrain = 	otherBox.parentTrain;
+
+			bool killOtherTrain = 			otherBox.type == TrainBox.Type.hurt;
+
+			if (killOtherTrain)
+				otherTrain.Die();
+		}
 	}
 
-	protected virtual void HandleTrainCollision(TrainController otherTrain, Collider collidedWith)
+	void HandleAutomaticMovement()
 	{
-		
+		rigidbody.velocity = 				transform.forward * currentSpeed;
+	}
+
+	void HandleAcceleration()
+	{
+		// Let the player accelerate or decelerate the train
+		float steerAxis = 					Input.GetAxis("Steer");
+
+		currentSpeed += 					steerAxis * Time.deltaTime;
+	}
+
+	public void Die()
+	{
+		hurtBox.collider.enabled =		 	false;
+		hitBox.collider.enabled = 			false;
+		Destroy(this.gameObject);
+	}
+
+	void SetupCallbacks()
+	{
+		hitBox.contactEvents.TriggerEnter.AddListener(OnHitboxCollision);
 	}
 
 }
