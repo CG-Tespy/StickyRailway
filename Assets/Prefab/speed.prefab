@@ -19,8 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4761723254897480}
-  - component: {fileID: 54090874913205270}
-  - component: {fileID: 114268240229867302}
   m_Layer: 0
   m_Name: speed
   m_TagString: Untagged
@@ -261,34 +259,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764066729446046}
   m_Mesh: {fileID: 4300002, guid: b99e11b17a094df418f4c4bdda661040, type: 3}
---- !u!54 &54090874913205270
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1177375674097276}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &114268240229867302
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1177375674097276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0969fc9bba9e12449aeb7a9bd18a9790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effects:
-  - {fileID: 11400000, guid: 8f00d99b44f81c042b1f75df836d33ef, type: 2}
 --- !u!136 &136921874281642850
 CapsuleCollider:
   m_ObjectHideFlags: 1

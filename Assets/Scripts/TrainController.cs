@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.AI;
 
+public class TrainEvent : UnityEvent<TrainController> {}
+
 public abstract class TrainController : MonoBehaviour3D 
 {
+	public TrainEvent Died 					{ get; protected set; }
 	[SerializeField] float _currentSpeed = 		1;
 	[SerializeField] float _maxSpeed = 			5f;
 	[SerializeField] float _accelRate = 		3f;
@@ -27,6 +30,7 @@ public abstract class TrainController : MonoBehaviour3D
 		set { _waypointTarget = value; }
 	}
 
+	protected Vector3 hitBaseSize, hurtBaseSize;
 	// Properties
 	public virtual float currentSpeed
 	{
@@ -60,6 +64,7 @@ public abstract class TrainController : MonoBehaviour3D
 	protected override void Awake()
 	{
 		base.Awake();
+		Died = 							new TrainEvent();
 		navMeshAgent = 					GetComponent<NavMeshAgent>();
 		navMeshAgent.speed = 			currentSpeed;
 		baseWaypoint  = 				firstWaypoint;
@@ -69,13 +74,15 @@ public abstract class TrainController : MonoBehaviour3D
 	protected virtual void Start()
 	{
 		SetupCallbacks();
+		hitBaseSize = 					hitBox.collider.bounds.size;
+		hurtBaseSize = 					hurtBox.collider.bounds.size;
 	}
 
 	// Update is called once per frame
 	protected virtual void Update () 
 	{
 		HandleAutomaticMovement();
-		//UpdateTrainBoxSizes();
+		//UpdateTrainBoxes();
 	}
 
 	void OnHitboxCollision(Collider other)
@@ -93,7 +100,7 @@ public abstract class TrainController : MonoBehaviour3D
 		}
 	}
 
-	public void HandleAutomaticMovement()
+	public virtual void HandleAutomaticMovement()
 	{
         
 		// The train just keeps moving forward all on its own.
@@ -101,12 +108,32 @@ public abstract class TrainController : MonoBehaviour3D
 			navMeshAgent.SetDestination(waypointTarget.transform.position);
 	}
 
-	
+	void UpdateTrainBoxes()
+	{
+		Vector3 hitboxSize = hitBaseSize;
+
+		float boostModifier = 							0.05f;
+		float boost = 									(offense - 1) * boostModifier;
+
+		hitboxSize += 									Vector3.one * boost;
+
+		//hitBox.collider.bounds.size = 					hitboxSize;
+		
+		// And the hurt box.
+
+		Vector3 hurtboxSize = 							hurtBaseSize;
+		float shrinkModifier = 							0.05f;
+		float shrinkage = 								(defense - 1) * shrinkModifier;
+
+		hurtboxSize -= 								Vector3.one * shrinkage;
+		hurtBox.transform.localScale = 					hurtboxSize;
+	}
 
 	public void Die()
 	{
 		hurtBox.collider.enabled =		 			false;
 		hitBox.collider.enabled = 					false;
+		Died.Invoke(this);
 		Destroy(this.gameObject);
 	}
 
@@ -118,32 +145,6 @@ public abstract class TrainController : MonoBehaviour3D
 	public virtual void GoToNextTarget()
 	{
 		waypointTarget = 		nextTarget;
-	}
-
-	void UpdateTrainBoxSizes()
-	{
-		// Hitbox...
-		Vector3 hitBoxScale = 					Vector3.one;
-
-		float boostModifier = 					0.05f;
-		float totalPowerBoost = 				(offense - 1) * boostModifier;
-
-		Vector3 hitBoxBoost = 					Vector3.one * totalPowerBoost;
-
-		hitBoxScale += 							hitBoxBoost;
-		hitBox.transform.localScale = 			hitBoxScale;
-
-		// And Hurtbox.
-		Vector3 hurtBoxScale = 					Vector3.one;
-
-		float shrinkModifier = 					0.05f;
-		float totalShrinkage = 					(defense - 1) * shrinkModifier;
-
-		Vector3 hurtBoxBoost = 					Vector3.one * totalShrinkage;
-
-		hurtBoxScale += 						hurtBoxBoost;
-		hurtBox.transform.localScale = 			hurtBoxScale;
-		
 	}
 
 }

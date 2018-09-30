@@ -13,19 +13,14 @@ public class PowerupController : MonoBehaviour3D
 		base.OnTriggerEnter(other);
 
 		TrainController train = 					other.GetComponent<TrainController>();
-		TrainBox trainBox = 						other.GetComponent<TrainBox>();
 
-		if (train != null || trainBox != null)
+		if (train != null)
 		{
-			if (trainBox != null)
-				train = trainBox.parentTrain;
-				
 			foreach (TrainPowerupEffect effect in effects)
 				effect.ApplyTo(train);
-
-			Destroy(this.gameObject);
 		}
 
+		Destroy(this.gameObject);
 	}
 
 }
