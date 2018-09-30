@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		HandleAutomaticMovement();
 		//HandleAcceleration();
-		HandleTurning();
+		//HandleTurning();
 	}
 
 	public void HandleAutomaticMovement()
