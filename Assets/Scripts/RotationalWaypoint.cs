@@ -28,7 +28,17 @@ public class RotationalWaypoint : MonoBehaviour
 
 		if (train != null)
 		{
-			train.waypointTarget = nextPoint;
+			float horizontalAxis = 						Input.GetAxis("Horizontal");
+			RotationalWaypoint nextWaypoint = 			null;
+
+			if (horizontalAxis < 0 && leftPoint != null)
+				nextWaypoint = 							leftPoint;
+			else if (horizontalAxis > 0 && rightPoint != null)
+				nextWaypoint = 							rightPoint;
+			else 
+				nextWaypoint = 							nextPoint;
+
+			train.waypointTarget = 						nextWaypoint;
 		}
 		/*
 		Transform otherTrans = 			other.transform;
