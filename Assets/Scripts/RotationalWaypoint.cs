@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class RotationalWaypoint : MonoBehaviour 
 {
 
-    public RotationalWaypoint nextPoint, leftPoint, rightPoint;
+    public RotationalWaypoint nextPoint, leftPoint, rightPoint, backPoint;
     public GameObject midPoint;
 
 

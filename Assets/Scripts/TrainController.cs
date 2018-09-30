@@ -14,6 +14,8 @@ public abstract class TrainController : MonoBehaviour3D
 	[SerializeField] TrainBox _hurtBox;
 	[SerializeField] TrainBox _hitbox;
 	[SerializeField] RotationalWaypoint firstWaypoint;
+    public RotationalWaypoint baseWaypoint;
+    public Sensor sensor;
 
 	RotationalWaypoint lastWaypointReached;
 	[SerializeField] RotationalWaypoint _waypointTarget;
@@ -58,7 +60,7 @@ public abstract class TrainController : MonoBehaviour3D
 		base.Awake();
 		navMeshAgent = 					GetComponent<NavMeshAgent>();
 		navMeshAgent.speed = 			currentSpeed;
-		waypointTarget = 				firstWaypoint;
+		baseWaypoint  = 				firstWaypoint;
 	}
 	
 	protected virtual void Start()
@@ -89,6 +91,7 @@ public abstract class TrainController : MonoBehaviour3D
 
 	public void HandleAutomaticMovement()
 	{
+        waypointTarget = baseWaypoint.nextPoint;
 		// The train just keeps moving forward all on its own.
 		if (navMeshAgent.destination != waypointTarget.transform.position)
 			navMeshAgent.SetDestination(waypointTarget.transform.position);
