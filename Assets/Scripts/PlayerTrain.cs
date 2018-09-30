@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PlayerTrain : TrainController
 {
     public KeyCode accelerateButton, backwardsButton;
+    
     public override float currentSpeed
     {
         get  { return base.currentSpeed;  }
@@ -19,6 +20,7 @@ public class PlayerTrain : TrainController
     {
         base.Update();
         HandleAcceleration();
+        HandleSteering();
     }
 
     void HandleAcceleration()
@@ -30,4 +32,31 @@ public class PlayerTrain : TrainController
         else if (Input.GetKey(backwardsButton))
             currentSpeed -=                             speedChange;
 	}
+
+    void HandleSteering()
+    {
+        // Choose what waypoint to go to next after reaching the target, all based on use input.
+
+        float steerFB =                     Input.GetAxis("SteerFB");
+        float steerLR =                     Input.GetAxis("SteerLR");
+
+        bool goForward =                    steerFB > 0;
+        bool goBackward =                   steerFB < 0;
+        bool goLeft =                       steerLR < 0;
+        bool goRight =                      steerLR > 0;
+
+        if (goForward)
+            nextTarget = waypointTarget.forwardPoint;
+        
+        if (goBackward)
+            nextTarget = waypointTarget.backPoint;
+
+        else if (goLeft)
+            nextTarget = waypointTarget.leftPoint;
+        
+        if (goRight)
+            nextTarget = waypointTarget.rightPoint;
+
+        
+    }
 }

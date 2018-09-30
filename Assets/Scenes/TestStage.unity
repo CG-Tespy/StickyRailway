@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 684196439}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 684196442}
   rightPoint: {fileID: 684196446}
   backPoint: {fileID: 1934049916}
@@ -3632,7 +3632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 684196450}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 684196469}
   rightPoint: {fileID: 0}
   backPoint: {fileID: 684196501}
@@ -3648,7 +3648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 0}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 0}
   rightPoint: {fileID: 0}
   backPoint: {fileID: 0}
@@ -3682,7 +3682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 684196461}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 0}
   rightPoint: {fileID: 64850725}
   backPoint: {fileID: 684196454}
@@ -3716,7 +3716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 0}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 684196439}
   rightPoint: {fileID: 684196474}
   backPoint: {fileID: 1963643628}
@@ -3750,7 +3750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 684196474}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 1963643628}
   rightPoint: {fileID: 0}
   backPoint: {fileID: 684196438}
@@ -3784,7 +3784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 684196442}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 0}
   rightPoint: {fileID: 1934049916}
   backPoint: {fileID: 684196486}
@@ -3818,7 +3818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 0}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 684196439}
   rightPoint: {fileID: 0}
   backPoint: {fileID: 684196442}
@@ -3871,7 +3871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 1963643628}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 1934049916}
   rightPoint: {fileID: 684196438}
   backPoint: {fileID: 684196506}
@@ -3905,7 +3905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 0}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 684196446}
   rightPoint: {fileID: 0}
   backPoint: {fileID: 684196450}
@@ -3958,7 +3958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 684196454}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 0}
   rightPoint: {fileID: 684196491}
   backPoint: {fileID: 0}
@@ -3992,7 +3992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 1934049916}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 684196486}
   rightPoint: {fileID: 684196506}
   backPoint: {fileID: 0}
@@ -4045,7 +4045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 0}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 684196506}
   rightPoint: {fileID: 684196438}
   backPoint: {fileID: 0}
@@ -4079,7 +4079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 684196469}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 684196491}
   rightPoint: {fileID: 684196501}
   backPoint: {fileID: 0}
@@ -11568,14 +11568,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab2296c7d51e9a4a8adfc68fc520483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentSpeed: 1
+  _currentSpeed: 3
   _maxSpeed: 5
   _accelRate: 3
   _offense: 1
   _defense: 1
   _hurtBox: {fileID: 1101352033}
   _hitbox: {fileID: 1120382939}
-  firstWaypoint: {fileID: 0}
+  firstWaypoint: {fileID: 1963643628}
   baseWaypoint: {fileID: 0}
   sensor: {fileID: 389507969}
   _waypointTarget: {fileID: 0}
@@ -11996,7 +11996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 64850725}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 684196454}
   rightPoint: {fileID: 684196469}
   backPoint: {fileID: 684196491}
@@ -12057,7 +12057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be58d9546ca4014e9570e79ff0cb665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPoint: {fileID: 684196446}
+  forwardPoint: {fileID: 0}
   leftPoint: {fileID: 64850725}
   rightPoint: {fileID: 684196450}
   backPoint: {fileID: 684196469}

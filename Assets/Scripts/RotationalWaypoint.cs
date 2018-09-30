@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class RotationalWaypoint : MonoBehaviour 
 {
 
-    public RotationalWaypoint nextPoint, leftPoint, rightPoint, backPoint;
+    public RotationalWaypoint forwardPoint, leftPoint, rightPoint, backPoint;
     public GameObject midPoint;
 
 
@@ -28,6 +28,8 @@ public class RotationalWaypoint : MonoBehaviour
 
 		if (train != null)
 		{
+			train.GoToNextTarget();
+			/*
 			float horizontalAxis = 						Input.GetAxis("Horizontal");
 			RotationalWaypoint nextWaypoint = 			null;
 
@@ -36,9 +38,10 @@ public class RotationalWaypoint : MonoBehaviour
 			else if (horizontalAxis > 0 && rightPoint != null)
 				nextWaypoint = 							rightPoint;
 			else 
-				nextWaypoint = 							nextPoint;
+				nextWaypoint = 							forwardPoint;
 
 			train.waypointTarget = 						nextWaypoint;
+			*/
 		}
 		/*
 		Transform otherTrans = 			other.transform;

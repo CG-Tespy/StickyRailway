@@ -17,7 +17,7 @@ public class Sensor : MonoBehaviour {
             entrance.gameObject != targetWaypoint.gameObject &&
             entrance.gameObject.tag == "Waypoint") {
             baseWaypoint = entrance.gameObject.GetComponent<RotationalWaypoint>();
-            targetWaypoint = baseWaypoint.nextPoint;
+            targetWaypoint = baseWaypoint.forwardPoint;
             Debug.Log("HitWayPT!");
             playerTrain.baseWaypoint = newWaypoint;
         }
